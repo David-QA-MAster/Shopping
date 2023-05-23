@@ -10,3 +10,11 @@ def produto_lista(request):
 def produto_detalhes(request):
     return render(request, 'produto_detalhes.html')
 
+def institucional(request):
+    return render(request, 'empresa.html')
+
+def cadastro_cliente(request):
+    return render(request, 'cadastro.html')
+
+def contato_cliente(request):
+    return render(request, 'contato.html')
