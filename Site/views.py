@@ -5,8 +5,10 @@ from Site.models import Departamento, Produto
 # Create your views here.
 def index(request):
     departamentos= Departamento.objects.all()
+    produtos_em_destaque= Produto.objects.filter(destaque = True)
     context = {
-        'departamentos' : departamentos
+        'departamentos': departamentos,
+        'produtos': produtos_em_destaque
     }
     return render(request, 'index.html', context)
 
@@ -18,7 +20,7 @@ def produto_lista(request):
      context = {
         'departamentos' : departamentos,
         'produtos': produtos,
-        'nome_categoria': "Produtos do 1º Campeão Mundial - 1951"
+        'nome_categoria': "Produtos do 1º Campeão Mundial - 1951 Palmeiras"
     }
      return render(request, 'produtos.html', context) 
 
@@ -38,8 +40,11 @@ def produto_lista_por_id(request, id):
 
 def produto_detalhe(request, id):
      departamentos= Departamento.objects.all()
+     produto = Produto.objects.get(id = id)
+
      context = {
-        'departamentos' : departamentos
+        'departamentos' : departamentos,
+        'produto': produto
     }
      return render(request, 'produto_detalhes.html', context)
 

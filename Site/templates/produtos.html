@@ -23,8 +23,9 @@
                     <!-- Inicio Produtos -->
                     {% for prod in produtos %}
                         {% include 'card_produto.html'%}
+                    {% empty %}
+                        <p>Nenhum Produto Nessa Categoria</p>
                     {% endfor %}
-          
                     <!-- termino produtos-->
                 </div>
             </div>
