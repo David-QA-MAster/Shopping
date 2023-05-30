@@ -42,7 +42,7 @@ class Cliente(models.Model):
     ]
     nome = models.CharField(max_length=50)
     cpf = models.CharField(max_length=14)
-    data_nascimento = models.DateField()
+    data_Nascimento = models.DateField()
     email = models.EmailField(max_length=120)
     endereco = models.CharField(max_length=250, verbose_name="Endereço")
     nro = models.IntegerField()
@@ -50,7 +50,7 @@ class Cliente(models.Model):
     cidade = models.CharField(max_length=50)
     uf = models.CharField(max_length=2)
     cep = models.CharField(max_length=9)
-    estado_civil = models.CharField(max_length=3, choices=ESTADO_CIVIL)
+    estado_Civil = models.CharField(max_length=3, choices=ESTADO_CIVIL)
 
     def __str__(self):
         return self.nome

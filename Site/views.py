@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from Site.forms import ClientesForm 
 from Site.models import Departamento, Produto
 
 # Create your views here.
@@ -41,10 +41,12 @@ def produto_lista_por_id(request, id):
 def produto_detalhe(request, id):
      departamentos= Departamento.objects.all()
      produto = Produto.objects.get(id = id)
+     produtos_relacionados = Produto.objects.filter(departamento_id = produto.departamento.id)[:5]
 
      context = {
         'departamentos' : departamentos,
-        'produto': produto
+        'produto': produto,
+        'produtos_relacionados' : produtos_relacionados
     }
      return render(request, 'produto_detalhes.html', context)
 
@@ -59,8 +61,18 @@ def institucional(request):
 
 def cadastro_cliente(request):
      departamentos= Departamento.objects.all()
+
+     if request.method == "POST":
+          formulario = ClientesForm(request.POST)
+          if formulario.is_valid():
+               cliente = formulario.save()
+               formulario = ClientesForm()
+     else:
+          formulario = ClientesForm()
+
      context = {
-        'departamentos' : departamentos
+        'departamentos' : departamentos,
+        'form_cliente' : formulario
     }
      return render(request, 'cadastro.html', context)
 
