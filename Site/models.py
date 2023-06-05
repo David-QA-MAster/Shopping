@@ -42,14 +42,14 @@ class Cliente(models.Model):
     ]
     nome = models.CharField(max_length=50)
     cpf = models.CharField(max_length=14)
-    data_Nascimento = models.DateField()
+    data_Nascimento = models.DateField( verbose_name="Data De Nascimento")
     email = models.EmailField(max_length=120)
+    cep = models.CharField(max_length=9)
     endereco = models.CharField(max_length=250, verbose_name="Endereço")
-    nro = models.IntegerField()
+    nro = models.IntegerField( verbose_name="Número")
     bairro = models.CharField(max_length=50)
     cidade = models.CharField(max_length=50)
     uf = models.CharField(max_length=2)
-    cep = models.CharField(max_length=9)
     estado_Civil = models.CharField(max_length=3, choices=ESTADO_CIVIL)
 
     def __str__(self):

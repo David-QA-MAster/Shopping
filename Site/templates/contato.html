@@ -1,7 +1,11 @@
 {% extends 'base.html'%}
 
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+
 {% block Titulo %}
-Contato
+Fale Conosco
 {% endblock Titulo %}
 
 
@@ -10,14 +14,27 @@ Contato
       <header class="bg-light py-1">
         <div class="container px-4 px-lg-5 my-5">
             <div class="text-center text-dark">
-                <h1 class="display-4 fw-bolder">Contato</h1>
+                <h1 class="display-4 fw-bolder">Fale Conosco</h1>
             </div>
         </div>
     </header>
     <!-- Section-->
     <section class="py-5">
-        <div class-"container">
-            {% lorem 5 p random %}
+        <div class-"container">  
+            {% if mensagem %}
+            <div class=class="alert alert-success{% if 'Erro' in mensagem %}danger{% else %}success{% endif %}">
+                {{ mensagem }}
+            </div>
+            {% endif %}
+            <form actions="{% url 'contato_cliente' %}" method="POST">
+                {% csrf_token %}
+                <div class="col-md-6 offset-md-3">
+                {{ form_contato|crispy }}
+                <input type="submit" value="Enviar" class="btn btn-warning">
+                </div>
+                
+            </form>
+
         </div>
 
     </section>   
