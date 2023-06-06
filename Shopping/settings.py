@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +26,9 @@ SECRET_KEY = 'django-insecure-^(5777i_=ad!ia9ud+$rwl5wf3)*&i_mzmq2=l-w#3b6$_m)8d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*',  '127.0.0.1']
+
+CSRF_TRUSTED_ORIGINS = ['*']
 
 
 # Application definition
@@ -81,12 +84,25 @@ WSGI_APPLICATION = 'Shopping.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# #DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'railway',
+         'USER': 'root',
+         'PASSWORD': 'cvavXDMv7Nfo4fQSUYzD',
+         'HOST': 'containers-us-west-40.railway.app', 
+         'PORT': '5565',
+     }
+ }
+
 
 
 # Password validation
@@ -124,6 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')	# static files do admin
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ] # static files do site
+		
+	
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
